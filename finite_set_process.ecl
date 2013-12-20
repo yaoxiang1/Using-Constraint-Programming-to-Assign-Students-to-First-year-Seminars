@@ -51,8 +51,6 @@ cal_rank([[N1,N2,N3,N4,N5,N6]|Rest],Dev_rank):-
 				
 
 
-
-
 build_list(Returned_list) :- set_flag(print_depth,500000), open(test, read, S), get_lines(S,X), get_strings(X,Returned_list).
 
 build_unique_list([First|Rest],[First|List]) :- build_unique_list_minus_one([First|Rest],List).
@@ -105,12 +103,7 @@ count_dif_intern_one_sem(Intern_list,[First_student_id|Rest],Numb_intern_dif) :-
 					count_dif_intern_one_sem(Intern_list,Rest,Numb_intern_dif1),Numb_intern_dif #= Numb_intern_dif1 + Intern_binary.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-												
 							
-
-
 % open, read and close
 foo(Student_size,Seminar_size,Student_seminar_list,Returned_list) :- 
 			 	 set_flag(print_depth,2000), 
@@ -144,8 +137,7 @@ foo(Student_size,Seminar_size,Student_seminar_list,Returned_list) :-
 				 	   			number_string(Y1,X1),
 								number_string(Y2,X2).
 
-							
-
+						
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 build_domains([], [Domain], _, Domain).
 build_domains([First|Rest], Domain,Student_numb,Student_domain):-
@@ -231,24 +223,6 @@ add_one(Student,Seminar,Rank,[Rank_f|Rank_r],[Rank_f|OutRank_f]):-
 add_one_helper(Student,1, [Rank_f|Rank_r],[[Student | Rank_f]|Rank_r]).
 add_one_helper(Student,Rank, [Rank_f|Rank_r],[Rank_f|OutRank_f]):- 
 					Rank > 1, Rank1 is Rank - 1,add_one_helper(Student,Rank1,Rank_r,OutRank_f).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -419,10 +393,6 @@ count_list_I([-1|Rest],Total):- count_list_I(Rest,Total1),Total is Total1+1.
 count_list_I([1|Rest],Total):- count_list_I(Rest,Total).
 
 
-
-
-
-
 cal_gender([],[],[],[],0).
 cal_gender([M1|MRest],[F1|FRest],[D1|DRest],[I1|IRest],Dev) :-
 			#(M1,MS),
@@ -439,16 +409,6 @@ cal_gender([M1|MRest],[F1|FRest],[D1|DRest],[I1|IRest],Dev) :-
 			%print(UB),
 			%print('\n').
 			
-			
-			
-	
-
-
-
-
-% for each solution, print human readable form 
-			
-
 
 working_sum([],0).
 working_sum([First|Rest],Sum) :-
@@ -517,8 +477,3 @@ cal_dev_size([First|Rest],Dev):-
 New_First #= 16-First, cal(New_First,Dev1), cal_dev_size(Rest,Dev2),Dev #= Dev1+Dev2.
 
 	
-
-
-
-
-		
