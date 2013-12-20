@@ -18,57 +18,6 @@ find(Students,Domains, Dev):-
 				 optimize(Students,Domains,1, Dev),
 				 labeling(Students).
 
-% another find version to call alan_labeling
-%
-% find(Students,Domain, Dev):-
-%				%labeling(Students),
-%				%search(Students,0,first_fail,indomain,complete,[]),
-%				alan_labeling(Domain,Student,1),
-%				cal_rank_size(Students,Size1,1,1,Domain),
-%				print(Size1),
-%				print("\n"),
-%				cal_rank_size(Students,Size2,2,1,Domain),
-%				print(Size2),
-%				print("\n"),
-%				cal_rank_size(Students,Size3,3,1,Domain),
-%				print(Size3),
-%				print("\n"),
-%				cal_rank_size(Students,Size4,4,1,Domain),
-%				print(Size4),
-%				print("\n"),
-%				cal_rank_size(Students,Size5,5,1,Domain),
-%				print(Size5),
-%				print("\n"),
-%				cal_rank_size(Students,Size6,6,1,Domain),
-%				print(Size6),
-%				print("\n").
-	
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% custom labeling strategy used to search for labeling
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%				 	
-%alan_labeling(_,[],_).
-%alan_labeling(Domain,[First|Rest],Index):-
-%				nth1(Index,Domain,D),
-%				%get_domain(First,FD),
-%				%list_int(Domain,FD,ID),
-%				member(First,D),
-%				Index1 is Index + 1,
-%				alan_labeling(Domain, Rest, Index1).
-				 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% function can be called by find to present the size of each seminar
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%				 			
-%cal_rank_size([],0,_,_,_).
-%cal_rank_size([First|Rest],F1_total,Index,Stu_numb,Domain):- 
-%				nth1(Stu_numb,Domain,D),
-%				CS::[0,1],
-%				nth1(Choice,D,First),
-%				#=(Choice,Index,CS),
-%				Stu_numb1 is Stu_numb + 1,
-%				cal_rank_size(Rest,F1_total1,Index,Stu_numb1,Domain), 
-%				F1_total is CS + F1_total1.	
-%		
 			
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Optimize function used to calculate student deviation for its ranking
