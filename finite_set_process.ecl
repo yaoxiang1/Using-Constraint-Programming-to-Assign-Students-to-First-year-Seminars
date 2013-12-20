@@ -1,41 +1,6 @@
 :- lib(ic_hybrid_sets).
 :- lib(branch_and_bound).
-% finite domain library
-%:- lib(ic). 
-% list process utility
 :- lib(listut).
-
-
-% TRIGGER: for a feasible solution  
-% foo(Student_size,Seminar_size,Student_seminar_list,S2),find(Student_seminar_list, Student_size, S_size, Student_Sem, Dev)
-
-% TRIGGER: for a optimal solution
-% foo(Student_size,Seminar_size,Student_seminar_list,S2),bb_min(find(Student_seminar_list, Student_size,S_size, Res,Dev),Dev,O)
-
-% bb_min, branch and bound, 
-% Goal, The (nondeterministic) search goal
-% Cost, A (usually numeric domain) variable representing the cost
-% Option
-% bb_min(search(Seminar_size,Dev),Dev,O)
-
-% string("sanitized2011.txt")
-% foo(Student_size,Seminar_size,Student_seminar_list,S2)
-
-
-% loop through student, build up G=[1,-1,-1,1,] I:[-1,1,0,-1,0]
-% male +1, female -1
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% build a [[1,5,"F","US"],[1,5,"F","US"]......] structure from the text	
-% TRIGGER: build a unique student List
-% build_list(Returned_list), build_unique_list(Returned_list, List), build_gender(List, Gender_list), build_intern(List, Intern_list)
-
-% TRIGGER: without search
-% build_list(Returned_list), build_unique_list(Returned_list, List), build_gender(List, Gender_list), build_intern(List, Intern_list), foo(Student_size,Seminar_size,Student_seminar_list,S2), find(Student_seminar_list, Student_size,S_size, Res,Dev,M,F,I,D,Gender_list,Intern_list).
 
 run(Res):-
  		build_list(Returned_list), 
@@ -88,18 +53,10 @@ cal_rank([[N1,N2,N3,N4,N5,N6]|Rest],Dev_rank):-
 
 
 
-%find(Student_seminar_list, Student_size,S_size, Res,Dev,Gender_list,Intern_list).
-		
-%%%CHANGE: to test_small
 build_list(Returned_list) :- set_flag(print_depth,500000), open(test, read, S), get_lines(S,X), get_strings(X,Returned_list).
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% build a unique list by calling build_unique_list_minus_one and add the first item onto the unique list
 
 build_unique_list([First|Rest],[First|List]) :- build_unique_list_minus_one([First|Rest],List).
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% build unique list minus the first element, if the same, do not change the List, if diff, add the later one to the list
 
 build_unique_list_minus_one([], []).
 build_unique_list_minus_one([ First | [] ], []).
@@ -125,8 +82,6 @@ build_intern([],[]).
 build_intern([First|Rest],[1|Intern_list1]) :- nth1(4,First,Nation,_), Nation=="US",build_intern(Rest,Intern_list1).
 build_intern([First|Rest],[-1|Intern_list1]) :- nth1(4,First,Nation,_), Nation\=="US",build_intern(Rest,Intern_list1).
 				
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % foo(Student_size,Seminar_size,Student_seminar_list,S2),find(Student_seminar_list, Student_size,S_size, Student_Sem,Dev),
